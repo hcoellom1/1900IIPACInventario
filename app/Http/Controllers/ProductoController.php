@@ -31,4 +31,32 @@ class ProductoController extends Controller
         return redirect('/productos/mostrar');
     }
 
+    public function editar($id){
+        $productoEditar = Producto::find($id);
+        return view('editarProducto', compact('productoEditar'));
+    }
+
+    public function salvarEditar(Request $request, $id){
+        $productoActualizar = Producto::find($id);
+        $productoActualizar->nombre = $request->nombre;
+        $productoActualizar->descripcion = $request->descripcion;
+        $productoActualizar->precio = $request->precio;
+        $productoActualizar->categoria = $request->categoria;
+        $productoActualizar->tipo = $request->tipo;
+        $productoActualizar->save();
+        return redirect('/productos/mostrar');
+    }
+
+    public function eliminar($id){
+        $productoEliminar = Producto::find($id);
+        return view('eliminarProducto', compact('productoEliminar'));
+    }
+
+    public function destroy($id){
+        $productoEliminar = Producto::find($id);
+        $productoEliminar->delete();
+        
+        return redirect('/productos/mostrar');
+    }
+
 }

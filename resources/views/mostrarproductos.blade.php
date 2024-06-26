@@ -29,8 +29,12 @@
                         <td>{{ $producto->descripcion }}</td>
                         <td>{{ $producto->precio }}</td>
                         <td>
-                          eliminar
+                          <a href={{route('producto.editar', $producto->idProducto )}}>Editar</a>
                         </td>
+                        <td>
+                            <a href={{route('producto.eliminar', $producto->idProducto )}}>Eliminar</a>
+                          </td>
+                        
                     </tr>
                 @endforeach
             </tbody>
